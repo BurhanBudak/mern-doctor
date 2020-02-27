@@ -1,0 +1,70 @@
+.messages-c {
+  position: relative;
+  border: 1px solid black;
+  height: 80vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  font: 16px/1.3 sans-serif;
+  justify-content: flex-end;
+ 
+}
+  
+  .messages {
+  padding: 8px;
+  margin: 0;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  background: white;
+  overflow: auto;
+  font: 16px/1.3 sans-serif;
+  
+  }
+.user{
+  margin: 2px 0 2px 8px;
+  align-self: flex-end;
+ 
+  background: cyan;
+  color: white;
+  border-radius: 8px;
+  padding: 8px;
+  
+}
+.bot{
+  margin: 2px 8px 2px 0;
+  float: left;
+  border-radius: 8px;
+  padding: 8px;
+  color: black;
+  position: relative;
+  
+  background: #eee;
+ 
+}
+.bot::before{
+  content: '👨‍⚕️';
+  font-size: 2rem;
+}
+.user::after{
+  content: '🤒';
+  font-size: 2rem;
+}
+@supports(mix-blend-mode: screen) {
+    .messages-container:after {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      height: 100%;
+      width: 100%;
+      background: linear-gradient(rgb(255, 143, 178) 0%, rgb(167, 151, 255) 50%, rgb(0, 229, 255) 100%);
+      mix-blend-mode: screen;
+      pointer-events: none;
+    }
+    
+    
+  }
+  
+  
