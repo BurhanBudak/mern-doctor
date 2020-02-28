@@ -21,7 +21,7 @@ handleSubmit = async e => {
     const input = this.state.input
     this.props.onChatRender({ isEliza : false, content : input })
     
-    const response = await fetch("https://mern-doctor.herokuapp.com/eliza/post",{
+    const response = await fetch("http://localhost:5000/eliza/post",{
       method:"POST",
       body: JSON.stringify({ message: input, conversationOver:this.state.conversationOver }),
       headers:{
@@ -29,7 +29,7 @@ handleSubmit = async e => {
       }
     })
     const res = await response.json();
-    
+    console.log(res)
     this.setState({
       input:'',
       conversationOver: res.conversationOver
@@ -44,7 +44,7 @@ onChange = (e) => {
   })
 }
 async componentDidMount(){  
-  const response = await fetch("https://mern-doctor.herokuapp.com/eliza/get",{
+  const response = await fetch("http://localhost:5000/eliza/get",{
     method:"GET",mode: 'cors',headers:{"Content-Type": "application/json"}})
     const res = await response.json()
     this.props.onChatRender(res)

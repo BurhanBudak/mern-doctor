@@ -2,12 +2,6 @@ const responses = require('../helpers/responsesObj');
 const synonyms = require('../helpers/synonymsObj')
 const responsesWithWildcard = require('../helpers/wildcardObj');
 
-const findResponsesForSimilarWord = require('./findResponse')
-
-const removePunctuation = require('./removePunc')
-
-// const selectResponse = require('./selectResponse')
-
 var keywords = [];
 var usedResponses = [];
 
