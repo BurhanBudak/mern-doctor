@@ -17,4 +17,8 @@
     align-items: stretch;
 }
 
+@media (max-width: 450px) {
+    .btn{opacity: 0;}
+  }
+
 
