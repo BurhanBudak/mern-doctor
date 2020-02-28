@@ -21,7 +21,7 @@ handleSubmit = async e => {
     const input = this.state.input
     this.props.onChatRender({ isEliza : false, content : input })
     
-    const response = await fetch("http://localhost:5000/eliza/post",{
+    const response = await fetch("https://mern-doctor.herokuapp.com/eliza/post",{
       method:"POST",
       body: JSON.stringify({ message: input, conversationOver:this.state.conversationOver }),
       headers:{
@@ -37,14 +37,14 @@ handleSubmit = async e => {
     let obj = {isEliza:res.isEliza,content: res.content}
     this.props.onChatRender(obj)
   }
-};
+}
 onChange = (e) => {
   this.setState({ 
     input: e.target.value
   })
 }
 async componentDidMount(){  
-  const response = await fetch("http://localhost:5000/eliza/get",{
+  const response = await fetch("https://mern-doctor.herokuapp.com/eliza/get",{
     method:"GET",mode: 'cors',headers:{"Content-Type": "application/json"}})
     const res = await response.json()
     this.props.onChatRender(res)
@@ -53,9 +53,6 @@ async componentDidMount(){
         return (
             <div className="dashboard">
             <form onSubmit={this.handleSubmit} className="form">
-            {/* <label 
-            htmlFor="inputtext"
-            >Answear here</label> */}
             <input
             className="form-control-lg"
             id="inputtext"

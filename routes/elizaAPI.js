@@ -3,8 +3,8 @@ const router = express.Router();
 
 const helper = require('../helpers/eliza')
 router.post('/post', function(req, res, next) {
-      let newMessage = helper(req.body.message)
-      res.json({isEliza:true,content: newMessage })
+      let newMessage = helper(req.body)
+      res.json(newMessage)
 });
 
 router.get('/get',function (req,res,next) {

@@ -69,7 +69,29 @@ function getKeywordsByWeight(){
 }
 // const replaceWords = require('./replaceWords')
 // const selectResponse = require('./selectResponse')
+/*
+ * Used to find the responses for similar words.
+ * Looks up the key of the similar word. Then
+ * fetches the responses.
+ */
+function findResponsesForSimilarWord(word){
+	var foundKey = "";
+	for(var key in synonyms){
+		var similarWords = synonyms[key];
+		for(var i = 0;i < similarWords.length;i++){
+			if(similarWords[i] == word){
+				foundKey = key;
+				break;
+			}
+		}
+		if(foundKey != ""){
+			break;
+		}
+	}
 
+	//Find responses for that key
+	return responses[foundKey];
+}
 function analyze(newMessage){
   
 	var found = false;
@@ -154,6 +176,19 @@ function analyze(newMessage){
 
 	return response;
 }
+
+function removePunctuation(message){
+	//',;.?!:'
+	message = message.replace(",","");
+	message = message.replace(";","");
+	message = message.replace(".","");
+	message = message.replace("?","");
+	message = message.replace("!","");
+	message = message.replace(":","");
+	
+	
+	return message;
+}
 // const findResponsesForSimilarWord = require('./findResponse')
 function selectResponse(word){
  
@@ -191,7 +226,6 @@ function selectResponse(word){
  * and remove unnessary punctuation. 
  */
 function processInput(message){
-
 	message = message.toLowerCase();
 	message = removePunctuation(message);
 	return message;
@@ -341,6 +375,15 @@ function getResponseWildcardInfo(keywordsWithWildcardStr){
 
 	return obj;
 }
+function isConversationOver(newMessage) {
+	var endChatTerms = ["goodbye","I have to leave","I have to leave.","quit","bye","exit"];
+		if(endChatTerms.contains(newMessage)){
+			return true;
+		}
+		else{
+			return false
+		}
+}
 
 Array.prototype.remove = function ( needle ) {
 	
@@ -373,6 +416,6 @@ function eliza(newMessage){
 		response = analyze(newMessage);
 		return {isEliza: true, content: response, conversationOver: params}
 	}else{
-		return {isEliza: true, content: "Our conversation has ended. Refresh the page to start again.", conversationOver: params};
+		return {isEliza: true, content: "Our conversation has ended. Refresh the page to start again.", conversationOver: true};
 	}
 }
