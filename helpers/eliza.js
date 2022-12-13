@@ -1,7 +1,7 @@
 const responses = require('../helpers/responsesObj');
 const synonyms = require('../helpers/synonymsObj')
 const responsesWithWildcard = require('../helpers/wildcardObj');
-
+const processInput = require('../helpers/processInput')
 var keywords = [];
 var usedResponses = [];
 
@@ -177,19 +177,19 @@ function analyze(newMessage){
 	return response;
 }
 
-function removePunctuation(message){
-	//',;.?!:'
-	message = message.replace(",","");
-	message = message.replace(";","");
-	message = message.replace(".","");
-	message = message.replace("?","");
-	message = message.replace("!","");
-	message = message.replace(":","");
+// function removePunctuation(message){
+// 	//',;.?!:'
+// 	message = message.replace(",","");
+// 	message = message.replace(";","");
+// 	message = message.replace(".","");
+// 	message = message.replace("?","");
+// 	message = message.replace("!","");
+// 	message = message.replace(":","");
 	
 	
-	return message;
-}
-// const findResponsesForSimilarWord = require('./findResponse')
+// 	return message;
+// }
+
 function selectResponse(word){
  
 	var potentialResponses = [];
@@ -225,11 +225,11 @@ function selectResponse(word){
  * Process input by making input lower case
  * and remove unnessary punctuation. 
  */
-function processInput(message){
-	message = message.toLowerCase();
-	message = removePunctuation(message);
-	return message;
-}
+// function processInput(message){
+// 	message = message.toLowerCase();
+// 	message = removePunctuation(message);
+// 	return message;
+// }
 
 function replaceWords(input){
 
