@@ -21,16 +21,19 @@ handleSubmit = async e => {
     const input = this.state.input
     this.props.onChatRender({ isEliza : false, content : input })
     
-    const response = await fetch("http://localhost:5000/eliza/post", {
-      method: "POST",
-      body: JSON.stringify({
-        message: input,
-        conversationOver: this.state.conversationOver,
-      }),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
+    const response = await fetch(
+      "https://mern-doctor.onrender.com/eliza/post",
+      {
+        method: "POST",
+        body: JSON.stringify({
+          message: input,
+          conversationOver: this.state.conversationOver,
+        }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
     const res = await response.json();
     console.log(res)
     this.setState({
@@ -50,7 +53,7 @@ onChange = (e) => {
   })
 }
   async componentDidMount() {  
-  const response = await fetch("http://localhost:5000/eliza/get", {
+  const response = await fetch("https://mern-doctor.onrender.com/eliza/get", {
     method: "GET",
     mode: "cors",
     headers: { "Content-Type": "application/json" },
